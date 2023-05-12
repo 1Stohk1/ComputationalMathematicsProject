@@ -1,0 +1,19 @@
+https://www.researchgate.net/post/Is-there-a-method-to-transform-a-matrix-in-order-to-improve-their-condition
+
+https://academicjournals.org/journal/AJMCSR/article-full-text-pdf/0AF15253495
+
+https://stackoverflow.com/questions/53010866/conjugate-gradient-in-eigen-for-non-positive-definite-matrices
+
+
+n > 8
+newA = A*A' (m*n)(n*m)
+newA = newA + eye(m)*45
+
+PROBLEMA
+new_b = A'*b + eye(m)*45  (n*m)(m*2) Però il problema è che dopo abbiamo un incompatibilità tra la matrice condizionata bene e la matrice soluzione
+- aka: Non esiste vettore x tale per cui riusciamo ad ottenere f(x) = 1/2Ax + bx + c = 0 per incompatibilità dimensioni
+
+new_b = [b [0 0 0]] fino a raggiungere n (m*n)
+new_b = b*A' + eye(m)*45  (m*n)(n*m)
+
+Forse se pò mettere in uso il Block Conjugate Gradient
