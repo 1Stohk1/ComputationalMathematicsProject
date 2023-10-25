@@ -20,12 +20,7 @@ clear NewCol i temp v c
 b = A'*b;
 A = A'*A;
 
-init_x = zeros(size(A, 1), size(b, 2));
-initial = A*init_x-b;
-norm(initial)
+[c, v] = custom_conjgrad(A, b);
 
-[c, v] = custom_conjgrad(A, b(:, 1));
-[d, v] = custom_conjgrad(A, b(:, 2));
-
-result = A*[c d]-b;
+result = A*c -b;
 norm(result)

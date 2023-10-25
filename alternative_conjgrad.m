@@ -21,12 +21,15 @@ function[x,  status] = custom_conjgrad(A, b, x, tol)
     new_residual = zeros(functionRows, functionCols); 
     alpha = zeros(1, functionCols); 
     beta = zeros(1, functionCols); 
-    
+    temp_z = zeros(functionRows, functionCols); 
+    temp_s = zeros(1, functionCols); 
+
     for i = 1:functionCols
-        disp(i);
-        direction(:, i) = b(:, i) - A * x(:, i);
-        residual(:, i) = direction(:, i);
-        alpha(i) = (residual(:, i)'*residual(:, i))/(direction(:, i)'*A*direction(:, i));
+        residual(:, i) = b(:, i) - A * x(:, i);
+        direction(:, i) = -residual(:, i);
+        temp_z(:, i)  = A*direction(:, i);
+        temp_s(i) = direction(:, i)'*temp_z(:, i);
+        alpha(i) = (residual(:, i)'*direction(:, i))/temp_s(i);
         x(:, i) = x(:, i) + alpha(i)* direction(:, i);
     end
 
@@ -34,14 +37,14 @@ function[x,  status] = custom_conjgrad(A, b, x, tol)
     while norm(residual) > tol  && atIter < maxIters 
 
         for i = 1:functionCols
-            new_residual(:, i) = residual(:, i) - alpha(i)*A*direction(:, i);
-            beta(i) = (new_residual(:, i)'*new_residual(:, i))/(residual(:, i)'*residual(:, i));
+            residual(:, i) = residual(:, i) - alpha(i)*temp_z(:, i);
+            beta(i) = (residual(:, i)'*temp_z(:, i))/temp_s(i);
+            direction(:, i) = -residual(:, i) + beta(i)*direction(:, i);
             
-            residual(:, i) = new_residual(:, i);
-            
-            direction(:, i) = new_residual(:, i) + beta(i)*direction(:, i);
-            alpha(i) = (new_residual(:, i)'*new_residual(:, i))/(direction(:, i)'*A*direction(:, i));
+            temp_z(:, i)  = A*direction(:, i);
+            temp_s(i) = direction(:, i)'*temp_z(:, i);
 
+            alpha(i) = (residual(:, i)'*direction(:, i))/temp_s(i);
             x(:, i) = x(:, i) + alpha(i)* direction(:, i);
         end
         
