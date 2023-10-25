@@ -1,0 +1,27 @@
+function[x,  status] = custom_conjgrad(A, b, x, tol)
+%     Control on the number of input args
+   if nargin<3
+        x = zeros(size(A, 1), 1);
+   end
+   if nargin<4
+       tol = 1e-6;
+   end
+    
+    direction = b - A * x;
+    residual = direction;
+    alpha = (residual'*residual)/(direction'*A*direction);
+    
+    for k = 1:numel(b)
+        
+       if( norm(residual) < tol )
+            return;
+       end
+       
+       
+        x = x +1;
+        disp(x)
+    end
+    
+
+    status = 0;
+

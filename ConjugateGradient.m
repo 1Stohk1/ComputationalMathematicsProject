@@ -50,43 +50,16 @@ if sqrt(norm(residual))<1
     disp('Bella roba')
 end
 
-% [w, d] = our_case( new_A , new_b , x )
+fc1 = @(x) our_case( new_A , new_b(:,1) , x );
+[res1, status] = NCG(fc1, zeros(54, 1), 0, 0, 1e-6, 1, 1000);
 
 
-fc = @(x) genericquad( [ 6 -2 ; -2 6 ] , [ 10 ; 5 ] , x );
-fc = @(x) our_case( new_A , new_b(:,1) , x );
+fc2 = @(x) our_case( new_A , new_b(:,2) , x );
+[res2, status] = NCG(fc, zeros(54, 1), 0, 0, 1e-6, 1, 1000);
+x = [res1 res2];
 
-
-
-[res, status] = NCG(fc, zeros(54,1), 1, 0, 1e-16, 1, 3000);
-
-% Generic quadratic function
-function [ v , varargout ] = genericquad( Q , q , x )
- % generic quadratic function f(x) = x' * Q * x / 2 + q' * x
-
-if isempty( x )  % informative call
-   if min( eig( Q ) ) > 1e-14
-      xStar = Q \ -q;
-      v = 0.5 * xStar' * Q * xStar + q' * xStar;
-   else
-      v = - Inf;
-   end
-   if nargout > 1
-      varargout{ 1 } = [ 0 ; 0 ];
-   end
-else
-   if ~ isequal( size( x ) , [ 2 1 ] )
-      error( 'genericquad: x is of wrong size' );
-   end
-   v = 0.5 * x' * Q * x + q' * x;  % f(x)
-   if nargout > 1
-      varargout{ 1 } = Q * x + q;  % \nabla f(x)
-      if nargout > 2
-         varargout{ 2 } = Q;       % \nabla^2 f(x)
-      end
-   end
-end
-end  % genericquad
+residual = new_A*x - new_b;
+norm(residual)
 
 
 % Our function
@@ -107,7 +80,7 @@ else
    if ~ isequal( size( x ) , [ 54 1 ] )
       error( 'genericquad: x is of wrong size' );
    end
-   v = x' * Q * x + q' * x;  % f(x) qui le dimensioni della moltiplicazione devono essere riviste
+   v = x' * Q * x + q' * x;  % f(x)
    if nargout > 1
       varargout{ 1 } = Q * x + q;  % \nabla f(x)
       if nargout > 2

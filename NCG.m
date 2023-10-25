@@ -126,7 +126,7 @@ function [ x , status ] =  NCG( f , varargin )
  =======================================
 %}
 
-Plotf = 3;
+Plotf = 1;
 % 1 = the level sets of f and the trajectory are plotted (when n = 2)
 % 2 = the function value / gap are plotted, iteration-wise
 % 3 = the function value / gap are plotted, function-evaluation-wise
