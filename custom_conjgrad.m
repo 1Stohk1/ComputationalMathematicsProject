@@ -1,7 +1,6 @@
 function[x,  status] = custom_conjgrad(A, b, x, tol)
 
-    functionRows = size(A, 1);
-    functionCols = size(b, 2);
+    [functionRows, functionCols] = size(b);
     
     %     Control the input args
     if nargin<3
@@ -23,7 +22,6 @@ function[x,  status] = custom_conjgrad(A, b, x, tol)
     beta = zeros(1, functionCols); 
     
     for i = 1:functionCols
-        disp(i);
         direction(:, i) = b(:, i) - A * x(:, i);
         residual(:, i) = direction(:, i);
         alpha(i) = (residual(:, i)'*residual(:, i))/(direction(:, i)'*A*direction(:, i));
