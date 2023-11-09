@@ -1,6 +1,9 @@
+addpath(genpath([fileparts(pwd), filesep]));
+
 temp = csvread('ML-CUP22-TR.csv', 8);
 A = temp(:,2:10);
 b = temp(:,11:12);
+
 v = 1:size(A,2);
 c = nchoosek(v,2);
 for i = 1:size(A,2)
@@ -16,11 +19,15 @@ for i = c:size(c,1)
     A = [A NewCol];
 end
 clear NewCol i temp v c
-
-b = A'*b;
-A = A'*A;
-
-[x, v] = custom_conjgrad(A, b);
-
-result = A*x -b;
-norm(result)
+symm_b = A'*b;
+symm_A = A'*A;
+tic
+[x, residual] = custom_conjgrad(symm_A, symm_b);
+toc
+norm(symm_A*x -symm_b)
+x1 = pcg(symm_A, symm_b(:,1));
+x2 = pcg(symm_A, symm_b(:,2));
+x = [x1 x2];
+norm(symm_A*x -symm_b)
+x = A\b;
+norm(symm_A*x -symm_b)
