@@ -14,7 +14,7 @@ for k = 1:n
 %     This will be our vector in which we build the mirror, such a way we can
 %     cancel everything (cause we will subtract the parallel stuff to this, i.e. 
 %     everything cause the mirror is just doing this
-    v = v/ norm(v);
+    v = v/ sqrt(v'*v);
 %     The length of w (vector to the mirror) is the length of x * cosine
 %     theta, and this length can be computed with the length of negative x
 %     and v (the vector in which we built the orthogonal mirror), the

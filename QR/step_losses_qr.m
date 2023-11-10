@@ -3,6 +3,7 @@ addpath(genpath([fileparts(pwd), filesep]));
 temp = csvread('ML-CUP22-TR.csv', 8);
 A = temp(:,2:10);
 b = temp(:,11:12);
+size(A)
 v = 1:size(A,2);
 c = nchoosek(v,2);
 for i = 1:size(A,2)
