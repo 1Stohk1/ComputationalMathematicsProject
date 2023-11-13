@@ -7,7 +7,7 @@ function[x,  resVals] = custom_conjgrad(A, b, x, tol)
         x = zeros(functionRows, functionCols);
     end
     if nargin<4
-        tol = 1e-6;
+        tol = 1e-8;
     end
 
     %     Initialize the variables

@@ -17,7 +17,7 @@ end
 [x, residual] = custom_conjgrad(symm_A, symm_b);
 x_star =  symm_A\symm_b;
 norm(x-x_star)
-norm(symm_A*x -symm_b)
+norm(2*symm_A*x-2*symm_b)
 norm(symm_A*x -symm_b)/norm(symm_b)
 disp('The average time in 1000 runs is:')
 va/1000
@@ -25,11 +25,11 @@ va/1000
 disp('SQUARED MATRIX')
 v = 1:size(A,2);
 c = nchoosek(v,2);
-for i = 1:v
-    NewCol = abs(A(:,i)).^2;
-    NewCol = NewCol/norm(NewCol);
-    A = [A NewCol];
-end
+% for i = 1:v
+%     NewCol = abs(A(:,i)).^2;
+%     NewCol = NewCol/norm(NewCol);
+%     A = [A NewCol];
+% end
 symm_b = A'*b;
 symm_A = A'*A;
 va=0;
@@ -42,7 +42,7 @@ end
 [x, residual] = custom_conjgrad(symm_A, symm_b);
 x_star =  symm_A\symm_b;
 norm(x-x_star)
-norm(symm_A*x -symm_b)
+norm(2*symm_A*x-2*symm_b)
 norm(symm_A*x -symm_b)/norm(symm_b)
 disp('The average time in 1000 runs is:')
 va/1000
@@ -68,11 +68,11 @@ end
 [x, residual] = custom_conjgrad(symm_A, symm_b);
 x_star =  symm_A\symm_b;
 norm(x-x_star)
-norm(symm_A*x -symm_b)
+norm(2*symm_A*x-2*symm_b)
 norm(symm_A*x -symm_b)/norm(symm_b)
 disp('The average time in 1000 runs is:')
 va/1000
-
+% 
 % tic
 % [x, residual] = custom_conjgrad(symm_A, symm_b);
 % toc
