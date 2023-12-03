@@ -1,4 +1,4 @@
-function[x,  resVals] = custom_conjgrad(A, b, x, tol)
+function[x,  resVals, atIter, exTime] = custom_conjgrad(A, b, x, tol, maxIters)
 
     [functionRows, functionCols] = size(b);
     
@@ -9,12 +9,16 @@ function[x,  resVals] = custom_conjgrad(A, b, x, tol)
     if nargin<4
         tol = 1e-8;
     end
-
+    if nargin<5
+        maxIters = functionRows;
+    end    
+    
     %     Initialize the variables
-    atIter = 0;
-    maxIters = functionRows;
-    resVals = zeros(1, maxIters); 
-   
+   tic;
+    atIter = 1;
+    pre=atIter;
+    resVals = zeros(1, maxIters) + 1; 
+    exTime = zeros(1, maxIters); 
     direction = zeros(functionRows, functionCols); 
     residual = zeros(functionRows, functionCols); 
     new_residual = zeros(functionRows, functionCols); 
@@ -27,9 +31,10 @@ function[x,  resVals] = custom_conjgrad(A, b, x, tol)
         alpha(i) = (residual(:, i)'*residual(:, i))/(direction(:, i)'*A*direction(:, i));
         x(:, i) = x(:, i) + alpha(i)* direction(:, i);
     end
-
+    exTime(1) = toc;
 %    Starting the loop
-    while norm(residual) > tol  && atIter < maxIters 
+    while resVals(pre) > tol  && atIter < maxIters 
+        tic;
 
         for i = 1:functionCols
             new_residual(:, i) = residual(:, i) - alpha(i)*A*direction(:, i);
@@ -43,8 +48,10 @@ function[x,  resVals] = custom_conjgrad(A, b, x, tol)
             x(:, i) = x(:, i) + alpha(i)* direction(:, i);
         end
         
+        resVals(atIter) = norm(A*x-b)/norm(b);
+        exTime(atIter) = exTime(atIter)+toc;
+        pre=atIter;
         atIter   = atIter + 1;
-        resVals(atIter) = norm(A*x-b);
-        
+        exTime(atIter) = exTime(atIter-1);
     end
 

@@ -1,4 +1,4 @@
-function[x,  status] = custom_conjgrad(A, b, x, tol)
+function[x,  status] = alternative_conjgrad(A, b, x, tol)
 
     functionRows = size(A, 1);
     functionCols = size(b, 2);
