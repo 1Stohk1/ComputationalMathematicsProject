@@ -11,7 +11,7 @@ for k = 1:n
     residuals(atIter) = norm(A(:, 1:k)*x -b)/norm(b);
 end
 toc
-plot(residuals, 'LineWidth', 2);
+semilogy(residuals, 'LineWidth', 2);
 
 title('Householder QR')
 xlabel('Dimension of X')
