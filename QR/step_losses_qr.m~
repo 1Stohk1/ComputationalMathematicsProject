@@ -17,11 +17,13 @@ for k = 1:n
     residuals(atIter) = norm(Qb(k+1:m,:))/norm(b);
 end
 toc
+<<<<<<< HEAD
 plot(results, 'LineWidth', 2);
 hold on
 plot(residuals, 'r--', 'LineWidth', 1.5);
-
+=======
 semilogy(residuals, 'LineWidth', 2);
+>>>>>>> bd859ef8fac3cc3ffc2c34239f4254cedbb1bd72
 
 title('Householder QR')
 xlabel('Dimension of X')
