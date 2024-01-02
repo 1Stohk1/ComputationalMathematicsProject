@@ -59,7 +59,8 @@ end
 x_star =  A\b;
 time = time/1000;
 result = norm(A*x -b)/norm(b);
-diff_star = norm(x-x_star)/norm(x);
+diff_star = norm(x-x_star)/norm(x_star);
+norm(A*x_star-b)
 nabla_f = norm(2*A*x-2*b)/norm(A);
 fprintf('Difference: %d\nNabla: %d\nResult: %d\nTime: %d\n', diff_star, nabla_f, result, time);
 fprintf('%d & %d & %d & %d & %d & %d \n\n', precision, diff_star, nabla_f, result, atIter, time);
@@ -73,6 +74,7 @@ for i=1:1000
     time = time + toc;
 end
 x_star =  A\b;
+norm(A*x_star-b)
 time = time/1000;
 result = norm(A*x -b)/norm(b);
 diff_star = norm(x-x_star)/norm(x_star);

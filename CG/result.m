@@ -10,8 +10,8 @@ end
 x_star =  A\b;
 time = time/1000;
 result = norm(A*x -b)/norm(b);
-diff_star = norm(x-x_star);
-nabla_f = norm(2*A*x-2*b);
+diff_star = norm(x-x_star)/norm(x_star);
+nabla_f = norm(2*A*x-2*b)/norm(A);
 fprintf('A dimension == %.f\n', size(A,1));
 fprintf('Difference: %d\nNabla: %d\nResult: %d\nTime: %d\n', diff_star, nabla_f, result, time);
 fprintf('%d & %d & %d & %d & %d \n\n', size(A,1), diff_star, nabla_f, result, time);
@@ -26,8 +26,8 @@ end
 x_star =  A\b;
 time = time/1000;
 result = norm(A*x -b)/norm(b);
-diff_star = norm(x-x_star);
-nabla_f = norm(2*A*x-2*b);
+diff_star = norm(x-x_star)/norm(x_star);
+nabla_f = norm(2*A*x-2*b)/norm(A);
 fprintf('A dimension == %.f\n', size(A,1));
 fprintf('Difference: %d\nNabla: %d\nResult: %d\nTime: %d\n', diff_star, nabla_f, result, time);
 fprintf('%d & %d & %d & %d & %d \n\n', size(A,1), diff_star, nabla_f, result, time);
@@ -42,8 +42,8 @@ end
 x_star =  A\b;
 time = time/1000;
 result = norm(A*x -b)/norm(b);
-diff_star = norm(x-x_star);
-nabla_f = norm(2*A*x-2*b);
+diff_star = norm(x-x_star)/norm(x_star);
+nabla_f = norm(2*A*x-2*b)/norm(A);
 fprintf('A dimension == %.f\n', size(A,1));
 fprintf('Difference: %d\nNabla: %d\nResult: %d\nTime: %d\n', diff_star, nabla_f, result, time);
 fprintf('%d & %d & %d & %d & %d \n\n', size(A,1), diff_star, nabla_f, result, time);
@@ -58,8 +58,8 @@ end
 x_star =  A\b;
 time = time/1000;
 result = norm(A*x -b)/norm(b);
-diff_star = norm(x-x_star);
-nabla_f = norm(2*A*x-2*b);
+diff_star = norm(x-x_star)/norm(x_star);
+nabla_f = norm(2*A*x-2*b)/norm(A);
 fprintf('A dimension == %.f\n', size(A,1));
 fprintf('Difference: %d\nNabla: %d\nResult: %d\nTime: %d\n', diff_star, nabla_f, result, time);
 fprintf('%d & %d & %d & %d & %d \n\n', size(A,1), diff_star, nabla_f, result, time);
