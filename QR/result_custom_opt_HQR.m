@@ -3,12 +3,12 @@ format long
 
 [A, b] = data_prep(0, -1); %=======================================================
 time = 0;
-for i=1:100
+for i=1:1000
     tic
     [Q, R, x] = custom_opt_HQR(A, b);
     time = time + toc;
 end
-time = time/100;
+time = time/1000;
 result = norm(A*x -b)/norm(b);
 x_star =  A\b;
 diff_star = norm(x-x_star)/norm(x_star);
@@ -27,12 +27,12 @@ fprintf('%d & %d & %d & %d & %d & %d \n\n', size(A,2), diff_star, nabla_f, resul
 
 [A, b] = data_prep(0, 1); %=======================================================
 time = 0;
-for i=1:100
+for i=1:1000
     tic
     [Q, R, x] = custom_opt_HQR(A, b);
     time = time + toc;
 end
-time = time/100;
+time = time/1000;
 result = norm(A*x -b)/norm(b);
 x_star =  A\b;
 diff_star = norm(x-x_star)/norm(x_star);
@@ -51,12 +51,12 @@ fprintf('%d & %d & %d & %d & %d & %d \n\n', size(A,2), diff_star, nabla_f, resul
 
 [A, b] = data_prep(0, 2); %=======================================================
 time = 0;
-for i=1:100
+for i=1:1000
     tic
     [Q, R, x] = custom_opt_HQR(A, b);
     time = time + toc;
 end
-time = time/100;
+time = time/1000;
 result = norm(A*x -b)/norm(b);
 x_star =  A\b;
 diff_star = norm(x-x_star)/norm(x_star);
@@ -75,12 +75,12 @@ fprintf('%d & %d & %d & %d & %d & %d \n\n', size(A,2), diff_star, nabla_f, resul
 
 [A, b] = data_prep(0, 0); %=======================================================
 time = 0;
-for i=1:100
+for i=1:1000
     tic
     [Q, R, x] = custom_opt_HQR(A, b);
     time = time + toc;
 end
-time = time/100;
+time = time/1000;
 result = norm(A*x -b)/norm(b);
 x_star =  A\b;
 diff_star = norm(x-x_star)/norm(x_star);

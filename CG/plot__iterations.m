@@ -1,13 +1,25 @@
 addpath(genpath([fileparts(pwd), filesep]));
 
 
-[A, b] = data_prep(1, 2); %=======================================================
-[x, res, iter, ex_time] = custom_conjgrad(A, b, zeros(size(b)), 0, 100);
-result = norm(A*x -b)/norm(b);
-% Plotting the matrix + colwise multiplication results
-plot(ex_time, 'r-','LineWidth',2);
-hold on
+rng(42)
+square = 100;
+while true
+  A = rand(square);
+  if rank(A) == square; break; end    %will be true nearly all the time
+end
+b = rand(square, 1);
 
+b = A'*b;
+A = A'*A;
+times = zeros(1, square);
+for j= 1:1000
+    [x, res, iter, ex_time] = custom_conjgrad(A, b, zeros(size(b)), 0);
+    times = times + ex_time;
+end
+% Plotting the matrix + colwise multiplication results
+times = times*1000
+plot(times, 'r-','LineWidth',2);
+xlim([0 square])
 % [ma,na]=size(A);
 % [mb,nb]=size(b);
 % afun=@(x)  reshape(A*reshape(x,na,[]),[],1);

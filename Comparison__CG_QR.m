@@ -18,9 +18,8 @@ nabla_f_qr =norm(2*(A'*A)*x_qr-2*A'*b)/norm(A'*A);
 x_star =  A\b;
 time_cg = 0;
 for i=1:1000
-    tic
-    [x_cg] = custom_conjgrad(A, b, b, diff_star_qr, 1000);
-    time_cg = time_cg + toc;
+    [x_cg, r, i, t] = custom_conjgrad(A, b, b, diff_star_qr*2, 300);
+    time_cg = time_cg + t(i);
 end
 time_cg = time_cg/1000;
 result_cg = norm(A*x_cg -b)/norm(b);
@@ -46,9 +45,8 @@ nabla_f_qr =norm(2*(A'*A)*x_qr-2*A'*b)/norm(A'*A);
 x_star =  A\b;
 time_cg = 0;
 for i=1:1000
-    tic
-    [x_cg] = custom_conjgrad(A, b, b, diff_star_qr, 1000);
-    time_cg = time_cg + toc;
+    [x_cg, r, i, t] = custom_conjgrad(A, b, b, diff_star_qr*2, 300);
+    time_cg = time_cg + t(i);
 end
 time_cg = time_cg/1000;
 result_cg = norm(A*x_cg -b)/norm(b);
@@ -74,9 +72,8 @@ nabla_f_qr =norm(2*(A'*A)*x_qr-2*A'*b)/norm(A'*A);
 x_star =  A\b;
 time_cg = 0;
 for i=1:1000
-    tic
-    [x_cg] = custom_conjgrad(A, b, b, diff_star_qr, 100);
-    time_cg = time_cg + toc;
+    [x_cg, r, i, t] = custom_conjgrad(A, b, b, diff_star_qr*2, 300);
+    time_cg = time_cg + t(i);
 end
 time_cg = time_cg/1000;
 result_cg = norm(A*x_cg -b)/norm(b);
@@ -102,9 +99,8 @@ nabla_f_qr =norm(2*(A'*A)*x_qr-2*A'*b)/norm(A'*A);
 x_star =  A\b;
 time_cg = 0;
 for i=1:1000
-    tic
-    [x_cg] = custom_conjgrad(A, b, b, diff_star_qr, 200);
-    time_cg = time_cg + toc;
+    [x_cg, r, i, t] = custom_conjgrad(A, b, b, diff_star_qr*2, 300);
+    time_cg = time_cg + t(i);
 end
 time_cg = time_cg/1000;
 result_cg = norm(A*x_cg -b)/norm(b);

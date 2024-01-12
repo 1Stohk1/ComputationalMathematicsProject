@@ -1,7 +1,13 @@
 addpath(genpath([fileparts(pwd), filesep]));
 
-[A, b] = data_prep(0, 0); %=======================================================
-tic
+rng(42)
+square = 100;
+while true
+  A = rand(square);
+  if rank(A) == square; break; end    %will be true nearly all the time
+end
+b = rand(square, 1);
+
 [m, n] = size(A);
 atIter = 0;
 results = zeros(1, n); 
@@ -21,22 +27,21 @@ for k = 1:n
 %     Qb = Q1*b;
 %     residuals(atIter) = norm(Qb(k+1:m,:))/norm(b);
 end
-toc
-plot(results, 'LineWidth', 2);
-hold on
-plot(residuals, 'r--', 'LineWidth', 1.5);
+% plot(results, 'LineWidth', 2);
+% hold on
+% plot(residuals, 'r--', 'LineWidth', 1.5);
+% 
+% title('Householder QR')
+% xlabel('Dimension of X')
+% ylabel('\boldmath$ ||\hat{X} w-y||\slash||y||$', 'Interpreter', 'Latex')
+% legend('$||Rw-Q^Ty||\slash||y||$', '$||Q^T_2y||\slash||y||$', 'fontsize',16, 'Interpreter', 'Latex')
+% 
+% clf;
 
-title('Householder QR')
-xlabel('Dimension of X')
-ylabel('\boldmath$ ||\hat{X} w-y||\slash||y||$', 'Interpreter', 'Latex')
-legend('$||Rw-Q^Ty||\slash||y||$', '$||Q^T_2y||\slash||y||$', 'fontsize',16, 'Interpreter', 'Latex')
-
-clf;
-
-times = times  * 1000;
+times = times  * 100;
 
 plot(times, 'r-','LineWidth',2);
-xlim([0 55])
+xlim([0 square])
 title('QR Factorization (Time)')
 xlabel('Iterations')
 ylabel('Ex. Time ($\mu$)', 'Interpreter', 'Latex')

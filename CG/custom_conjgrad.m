@@ -14,7 +14,7 @@ function[x,  resVals, atIter, exTime] = custom_conjgrad(A, b, x, tol, maxIters)
     end    
     
     %     Initialize the variables
-   tic;
+    tic;
     atIter = 1;
     pre=atIter;
     resVals = zeros(1, maxIters) + 1; 
@@ -31,7 +31,9 @@ function[x,  resVals, atIter, exTime] = custom_conjgrad(A, b, x, tol, maxIters)
         alpha(i) = (residual(:, i)'*residual(:, i))/(direction(:, i)'*A*direction(:, i));
         x(:, i) = x(:, i) + alpha(i)* direction(:, i);
     end
+    
     exTime(1) = toc;
+    
 %    Starting the loop
     while resVals(pre) > tol  && atIter < maxIters 
         tic;
