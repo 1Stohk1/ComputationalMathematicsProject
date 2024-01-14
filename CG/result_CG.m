@@ -2,7 +2,7 @@ addpath(genpath([fileparts(pwd), filesep]));
 
 [A, b] = data_prep(1, -1); %=======================================================
 time = 0;
-for i=1:1000
+for c=1:1000
     [x, r, i, t] = custom_conjgrad(A, b, b, 1e-16);
     time = time + t(end);
 end
@@ -18,7 +18,7 @@ fprintf('%d & %d & %d & %d & %d \n\n', size(A,1), diff_star, nabla_f, result, ti
 [A, b] = data_prep(1, 1); %=======================================================
 time = 0;
 for i=1:1000
-    [x, r, i, t] = custom_conjgrad(A, b, b, 1e-16);
+    [x, r, ~, t] = custom_conjgrad(A, b, b, 1e-16);
     time = time + t(end);
 end
 x_star =  A\b;
@@ -33,7 +33,7 @@ fprintf('%d & %d & %d & %d & %d \n\n', size(A,1), diff_star, nabla_f, result, ti
 [A, b] = data_prep(1, 2); %=======================================================
 time = 0;
 for i=1:1000
-    [x, r, i, t] = custom_conjgrad(A, b, b, 1e-16);
+    [x, r, ~, t] = custom_conjgrad(A, b, b, 1e-16);
     time = time + t(end);
 end
 x_star =  A\b;
@@ -48,7 +48,7 @@ fprintf('%d & %d & %d & %d & %d \n\n', size(A,1), diff_star, nabla_f, result, ti
 [A, b] = data_prep(1, 0); %=======================================================
 time = 0;
 for i=1:1000
-    [x, r, i, t] = custom_conjgrad(A, b, b, 1e-16);
+    [x, r, ~, t] = custom_conjgrad(A, b, b, 1e-16);
     time = time + t(end);
 end
 x_star =  A\b;
