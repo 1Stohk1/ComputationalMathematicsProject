@@ -3,7 +3,6 @@ addpath(genpath([fileparts(pwd), filesep]));
 [A, b] = data_prep(0, -1); %=======================================================
 fprintf('A dimension == %.f\n', size(A,2));
 x_star =  A\b;
-result_star = norm(A*x_star -b)/norm(b);
 time_qr = 0;
 for i=1:1000
     tic
@@ -18,8 +17,8 @@ nabla_f_qr =norm(2*(A'*A)*x_qr-2*A'*b)/norm(A'*A);
 x_star =  A\b;
 time_cg = 0;
 for i=1:1000
-    [x_cg, r, i, t] = custom_conjgrad(A, b, b, diff_star_qr*2, 300);
-    time_cg = time_cg + t(i);
+    [x_cg, r, it, t] = custom_conjgrad(A, b, b, diff_star_qr*5, 440, 1);
+    time_cg = time_cg + t(it);
 end
 time_cg = time_cg/1000;
 result_cg = norm(A*x_cg -b)/norm(b);
@@ -30,7 +29,6 @@ fprintf('makecell{%d \\ %d} & makecell{%d \\ %d}  & makecell{%d \\ %d}  & makece
 [A, b] = data_prep(0, 1); %=======================================================
 fprintf('A dimension == %.f\n', size(A,2));
 x_star =  A\b;
-result_star = norm(A*x_star -b)/norm(b);
 time_qr = 0;
 for i=1:1000
     tic
@@ -45,8 +43,8 @@ nabla_f_qr =norm(2*(A'*A)*x_qr-2*A'*b)/norm(A'*A);
 x_star =  A\b;
 time_cg = 0;
 for i=1:1000
-    [x_cg, r, i, t] = custom_conjgrad(A, b, b, diff_star_qr*2, 300);
-    time_cg = time_cg + t(i);
+    [x_cg, r, it, t] = custom_conjgrad(A, b, b, diff_star_qr*5, 179, 1);
+    time_cg = time_cg + t(it);
 end
 time_cg = time_cg/1000;
 result_cg = norm(A*x_cg -b)/norm(b);
@@ -57,7 +55,6 @@ fprintf('makecell{%d \\ %d} & makecell{%d \\ %d}  & makecell{%d \\ %d}  & makece
 [A, b] = data_prep(0, 2); %=======================================================
 fprintf('A dimension == %.f\n', size(A,2));
 x_star =  A\b;
-result_star = norm(A*x_star -b)/norm(b);
 time_qr = 0;
 for i=1:1000
     tic
@@ -72,8 +69,8 @@ nabla_f_qr =norm(2*(A'*A)*x_qr-2*A'*b)/norm(A'*A);
 x_star =  A\b;
 time_cg = 0;
 for i=1:1000
-    [x_cg, r, i, t] = custom_conjgrad(A, b, b, diff_star_qr*2, 300);
-    time_cg = time_cg + t(i);
+    [x_cg, r, it, t] = custom_conjgrad(A, b, b, diff_star_qr, 300, 1);
+    time_cg = time_cg + t(it);
 end
 time_cg = time_cg/1000;
 result_cg = norm(A*x_cg -b)/norm(b);
@@ -84,7 +81,6 @@ fprintf('makecell{%d \\ %d} & makecell{%d \\ %d}  & makecell{%d \\ %d}  & makece
 [A, b] = data_prep(0, 0); %=======================================================
 fprintf('A dimension == %.f\n', size(A,2));
 x_star =  A\b;
-result_star = norm(A*x_star -b)/norm(b);
 time_qr = 0;
 for i=1:1000
     tic
@@ -99,8 +95,8 @@ nabla_f_qr =norm(2*(A'*A)*x_qr-2*A'*b)/norm(A'*A);
 x_star =  A\b;
 time_cg = 0;
 for i=1:1000
-    [x_cg, r, i, t] = custom_conjgrad(A, b, b, diff_star_qr*2, 300);
-    time_cg = time_cg + t(i);
+    [x_cg, r, it, t] = custom_conjgrad(A, b, b, diff_star_qr, 300, 1);
+    time_cg = time_cg + t(it);
 end
 time_cg = time_cg/1000;
 result_cg = norm(A*x_cg -b)/norm(b);

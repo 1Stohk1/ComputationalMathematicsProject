@@ -1,14 +1,12 @@
 function[Qb, R1, x] = custom_opt_HQR(A, b)
 
-% Application of the Houdeholder QR method with the solution matrix computed thanks 
-% to the premultiplication of b.
-% 
-% -- Input Arguments
-% 
-% -- Output Arguments
-% Qb: Orthogonal matrix premultiplied by b, this holds all the reflector vectors, that removed the components under the main diagonal of A;
-% R1: The upper triangular matrix till the n-th row;
-% x: Solution of the system.
+Application of the Houdeholder QR method with the solution matrix computed thanks 
+to the premultiplication of b.
+
+-- Input Arguments
+
+-- Output Arguments
+Qb: Orthogonal matrix premu
 
 [m, n] = size(A);
 Qb = b;
