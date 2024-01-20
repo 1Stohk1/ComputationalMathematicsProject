@@ -16,7 +16,7 @@ for j= 1:1000
     times = times + ex_time;
 end
 % Plotting the matrix + colwise multiplication results
-times = times*1000
+times = times*1000;
 plot(times, 'r-','LineWidth',2);
 xlim([0 square])
 % [ma,na]=size(A);

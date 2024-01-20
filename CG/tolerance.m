@@ -1,6 +1,5 @@
 addpath(genpath([fileparts(pwd), filesep]));
 
-
 [A, b] = data_prep(1, 0); %=======================================================
 iter = 1000;
 precision  = 1e-2;
@@ -51,7 +50,7 @@ fprintf('Difference: %d\nNabla: %d\nResult: %d\nTime: %d\n', diff_star, nabla_f,
 fprintf('%d & %d & %d & %d & %d & %d \n\n', precision, diff_star, nabla_f, result, atIter, time);
 
 [A, b] = data_prep(1, 0); %=======================================================
-precision  = 1e-8;
+precision  = 1e-14;
 time = 0;
 for i=1:1000
     [x, res, atIter, t] = custom_conjgrad(A, b, b, precision, iter);
@@ -67,7 +66,7 @@ fprintf('Difference: %d\nNabla: %d\nResult: %d\nTime: %d\n', diff_star, nabla_f,
 fprintf('%d & %d & %d & %d & %d & %d \n\n', precision, diff_star, nabla_f, result, atIter, time);
 
 [A, b] = data_prep(1, 0); %=======================================================
-precision  = 1e-12;
+precision  = 1e-16;
 time = 0;
 for i=1:1000
     [x, res, atIter, t] = custom_conjgrad(A, b, b, precision, 125);

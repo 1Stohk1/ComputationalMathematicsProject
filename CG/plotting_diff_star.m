@@ -27,7 +27,7 @@ hold on
 result = norm(A*x -b)/norm(b);
 % Plotting the matrix + colwise multiplication results
 semilogy(res, 'r-','LineWidth',2);
-xlim([0, size(A,2)]);
+xlim([0, size(A,0)]);
 hold on
 
 title('Conjugate Gradient')

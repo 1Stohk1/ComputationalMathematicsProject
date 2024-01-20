@@ -6,17 +6,13 @@ tic
 [m, n] = size(A);
 atIter = 0;
 results = zeros(1, n); 
-residuals1 = zeros(1, n);
+x_star = A\b;
+x_comp = zeros(size(x_star));
 for k = 1:n
     atIter = atIter + 1;
-    % [Q, R, x] = custom_opt_HQR(A(:, 1:k), b);
-    % results(atIter) = norm(A(:, 1:k)*x -b)/norm(b);
-    [Q1, R1] = custom_HQR(A(:, 1:k));
-    x = R1\(Q1*b);
-    results(atIter) = norm(R1*x-Q1*b)/norm(b);
-    Rx = R1*x;
-    Qb = Q1*b;
-    residuals1(atIter) = norm(Qb(k+1:m,:))/norm(b);
+    [Q, R, x] = custom_opt_HQR(A(:, 1:k), b);
+    x_comp(1:k,:) = x;
+    results(atIter) = norm(x_comp-x_star)/norm(x_star);
 end
 toc
 
@@ -29,23 +25,17 @@ tic
 [m, n] = size(A);
 atIter = 0;
 results = zeros(1, n); 
-residuals2 = zeros(1, n);
+x_star = A\b;
+x_comp = zeros(size(x_star));
 for k = 1:n
     atIter = atIter + 1;
-    % [Q, R, x] = custom_opt_HQR(A(:, 1:k), b);
-    % results(atIter) = norm(A(:, 1:k)*x -b)/norm(b);
-    [Q1, R1] = custom_HQR(A(:, 1:k));
-    x = R1\(Q1*b);
-    results(atIter) = norm(R1*x-Q1*b)/norm(b);
-    Rx = R1*x;
-    Qb = Q1*b;
-    residuals2(atIter) = norm(Qb(k+1:m,:))/norm(b);
+    [Q, R, x] = custom_opt_HQR(A(:, 1:k), b);
+    x_comp(1:k,:) = x;
+    results(atIter) = norm(x_comp-x_star)/norm(x_star);
 end
 toc
 
 semilogy(results, 'r-','LineWidth',2);
-semilogy(residuals1, 'b.', 'LineWidth', 1.5);
-semilogy(residuals2, 'b.', 'LineWidth', 1.5);
 hold on
 xlim([0 size(A, 0)])
 title('Householder QR')

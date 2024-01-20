@@ -32,8 +32,9 @@ result = norm(A*x -b)/norm(b);
 semilogy(res, 'r-','LineWidth',2);
 hold on
 
+xlim([0, 54]);
 title('Conjugate Gradient')
 xlabel('Dimension of X')
 
 ylabel('\boldmath$ ||\hat{X} w-y||\slash||y||$', 'Interpreter', 'Latex')
-legend('$X ^{(1491 \times 9)}$', '$\hat{X}^{(1491\times 18)}$', '$\hat{X} ^{(1491\times 45)}$', '$\hat{X} ^{(1491\times 54)}$','fontsize',16, 'Interpreter', 'Latex')
+legend('$X ^{(1491 \times 9)}$', '$\hat{X}^{(1491\times 18)}$', '$\hat{X} ^{(1491\tim(new)cg_losses 45)}$', '$\hat{X} ^{(1491\times 54)}$','fontsize',16, 'Interpreter', 'Latex')
