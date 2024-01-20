@@ -21,6 +21,7 @@ for i=1:1000
     time_cg = time_cg + t(it);
 end
 time_cg = time_cg/1000;
+[A, b] = data_prep(0, -1); %=======================
 result_cg = norm(A*x_cg -b)/norm(b);
 diff_star_cg = norm(x_cg-x_star)/norm(x_star);
 nabla_f_cg = norm(2*A*x_cg-2*b)/norm(A);
@@ -47,6 +48,7 @@ for i=1:1000
     time_cg = time_cg + t(it);
 end
 time_cg = time_cg/1000;
+[A, b] = data_prep(0, 1); %=======================
 result_cg = norm(A*x_cg -b)/norm(b);
 diff_star_cg = norm(x_cg-x_star)/norm(x_star);
 nabla_f_cg = norm(2*A*x_cg-2*b)/norm(A);
@@ -73,6 +75,7 @@ for i=1:1000
     time_cg = time_cg + t(it);
 end
 time_cg = time_cg/1000;
+[A, b] = data_prep(0, 2); %=======================
 result_cg = norm(A*x_cg -b)/norm(b);
 diff_star_cg = norm(x_cg-x_star)/norm(x_star);
 nabla_f_cg = norm(2*A*x_cg-2*b)/norm(A);
@@ -99,6 +102,7 @@ for i=1:1000
     time_cg = time_cg + t(it);
 end
 time_cg = time_cg/1000;
+[A, b] = data_prep(0, 0); %=======================
 result_cg = norm(A*x_cg -b)/norm(b);
 diff_star_cg = norm(x_cg-x_star)/norm(x_star);
 nabla_f_cg = norm(2*A*x_cg-2*b)/norm(A);

@@ -1,6 +1,5 @@
 addpath(genpath([fileparts(pwd), filesep]));
 
-
 rng(42)
 square = 100;
 while true

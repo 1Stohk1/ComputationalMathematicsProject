@@ -18,7 +18,7 @@ function [A, b] = data_prep(method, type)
 
     temp = csvread('ML-CUP22-TR.csv', 8);
     A = temp(:, 2:10);
-    b = temp(:, 11);
+    b = temp(:, 11:12);
     if ne(type, -1)
         A = extendingc(A, type);
     end

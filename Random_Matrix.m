@@ -21,12 +21,12 @@ QResult = norm(A*x-b)/norm(b);
 diff_qr = norm(x_star-x)/norm(x_star);
 nabla_qr = norm(2*(A'*A)*x-2*A'*b)/norm(A'*A);
 
-b = A'*b;
-A = A'*A;
+symm_b = A'*b;
+symm_A = A'*A;
 x_star = A\b;
 time_cg = 0;
 for i=1:100
-    [x, res, iter, ex_time] = custom_conjgrad(A, b, b, 5e-15);
+    [x, res, iter, ex_time] = custom_conjgrad(symm_A, symm_b, symm_b, 5e-15);
     time_cg = time_cg + ex_time(iter);
 end
 time_cg = time_cg/100;
@@ -59,12 +59,12 @@ QResult = norm(A*x-b)/norm(b);
 diff_qr = norm(x_star-x)/norm(x_star);
 nabla_qr = norm(2*(A'*A)*x-2*A'*b)/norm(A'*A);
 
-b = A'*b;
-A = A'*A;
+symm_b = A'*b;
+symm_A = A'*A;
 x_star = A\b;
 time_cg = 0;
 for i=1:10
-    [x, res, iter, ex_time] = custom_conjgrad(A, b, b, 5e-15, 1000);
+    [x, res, iter, ex_time] = custom_conjgrad(symm_A, symm_b, symm_b, 5e-15, 1000);
     time_cg = time_cg + ex_time(iter);
 end
 time_cg = time_cg/10;
