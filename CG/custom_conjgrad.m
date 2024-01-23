@@ -1,4 +1,4 @@
-function[x,  resVals, atIter, exTime] = custom_conjgrad(A, b, x, tol, maxIters, metric, A_original, b_original)
+function[x,  resVals, atIter, exTime, upperBound] = custom_conjgrad(A, b, x, tol, maxIters, metric, A_original, b_original)
 
 % Application of the Conjugate Gradient to the inserted system formed by A and b. Can be 
 % applied to systems with more than 1 column goal vector b (the algorithm will iterate for 
@@ -56,20 +56,25 @@ function[x,  resVals, atIter, exTime] = custom_conjgrad(A, b, x, tol, maxIters, 
     end
     if metric == 1
         x_star = A_original\b_original;
+        initError = norm(x-x_star);
+        upperBound = zeros(1,maxIters);
+        sqrt_condition = sqrt(cond(A));
     end
-
     
     %     Initialize the variables
     tic;
+    
     atIter = 1;
     pre = atIter;
+    
     resVals = zeros(1, maxIters) + 1; 
-    exTime = zeros(1, maxIters); 
-    direction = zeros(functionRows, functionCols); 
-    residual = zeros(functionRows, functionCols); 
+    exTime = zeros(1, maxIters+1); 
+    
+    direction =         zeros(functionRows, functionCols); 
+    residual =           zeros(functionRows, functionCols); 
     new_residual = zeros(functionRows, functionCols); 
-    alpha = zeros(1, functionCols); 
-    beta = zeros(1, functionCols); 
+    alpha =               zeros(1, functionCols); 
+    beta =                 zeros(1, functionCols); 
     
     for i = 1:functionCols
         direction(:, i) = b(:, i) - A * x(:, i);
@@ -96,15 +101,16 @@ function[x,  resVals, atIter, exTime] = custom_conjgrad(A, b, x, tol, maxIters, 
             x(:, i) = x(:, i) + alpha(i)* direction(:, i);
         end
         
+%         Check the value function or the different w*
         if metric == 0
             resVals(atIter) = norm(A_original*x-b_original)/norm(b_original);
         else 
-            resVals(atIter) = norm(x-x_star)/norm(x_star);
+            resVals(atIter) = norm(x-x_star);
+            upperBound(atIter) = ((sqrt_condition-1)/(sqrt_condition+1))^atIter*initError;
         end
 
-        exTime(atIter) = exTime(atIter)+toc;
+        exTime(atIter) = exTime(pre)+toc;
         pre = atIter;
         atIter = atIter + 1;
-        exTime(atIter) = exTime(pre);
     end
 
