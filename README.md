@@ -6,6 +6,6 @@ where $\hat{X}$ is the matrix obtained by concatenating the (tall thin) matrix f
 The first algorithm implemented and discussed is the **Conjugate Gradient Method**, which needs some initial conditions to be met, so the first section will discuss the stage setting. 
 The second part of the report will regard the **QR Factorization with Householder reflectors** in the variant where one does not form the matrix $Q$, but stores the Householder vectors $u_k$ and uses them to perform (implicitly) products with $Q$ and $Q^T$.
 
-![Convergence curve CG](CG/utils/graph/cg_loss.png)
+![Convergence curve CG](CG/utils/graph/(new)cg_loss.png)
 
 ![Convergence curve QR](QR/utils/graph/(new)qr_losses.png)
