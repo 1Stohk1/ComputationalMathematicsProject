@@ -1,10 +1,12 @@
-cff-version: 1.0
+cff-version: 1.0.0
 message: "If you use this software, please cite it as below."
 authors:
 - family-names: "Peluso"
   given-names: "Christian"
+  orcid: "https://orcid.org/0000-0000-0000-0000"
 - family-names: "Cignoni"
   given-names: "Giacomo"
+  orcid: "https://orcid.org/0000-0000-0000-0000"
 title: "Computational Mathematics Project 2023"
 version: 1.0
 date-released: 2024-01-24
