@@ -1,0 +1,11 @@
+cff-version: 1.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "Peluso"
+  given-names: "Christian"
+- family-names: "Cignoni"
+  given-names: "Giacomo"
+title: "Computational Mathematics Project 2023"
+version: 1.0
+date-released: 2024-01-24
+url: "https://github.com/1Stohk1/ComputationalMathematicsProject"
