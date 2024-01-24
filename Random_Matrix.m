@@ -1,5 +1,4 @@
-rng(42)
-[A, b] = system_generator(200, 2000);
+[A, b] = system_generator(200, 2000, 4);
 
 [time_qr, result_qr, diff_qr, nabla_qr] = computing_qr(A, b, 10); % It is impossible to average more than this
 [time_cg, result_cg, diff_cg, nabla_cg] = computing_cg(A, b, 10); % It is impossible to average more than this
@@ -9,7 +8,7 @@ fprintf('%d & %d  & %d  & %d \\ %d & %d  & %d & %d \n', ...
             diff_qr, nabla_qr, result_qr, time_qr, ...
             diff_cg, nabla_cg, result_cg, time_cg)
 
-[A, b] = system_generator(800, 800);
+[A, b] = system_generator(800, 800, 4);
 
 [time_qr, result_qr, diff_qr, nabla_qr] = computing_qr(A, b, 5); % It is impossible to average more than this
 [time_cg, result_cg, diff_cg, nabla_cg] = computing_cg(A, b, 5); % It is impossible to average more than this
@@ -47,12 +46,4 @@ function[time, result, diff, nabla] = computing_qr(A, b, iters)
     result = norm(A*x-b)/norm(b);
     diff = norm(x_star-x)/norm(x_star);
     nabla = norm(2*(A'*A)*x-2*A'*b)/norm(A'*A);
-end
-
-function[A, b] = system_generator(matrixColumn, matrixRow)
-    while true
-      A = rand(matrixRow, matrixColumn);
-      if rank(A) == matrixColumn; break; end    %will be true nearly all the time
-    end
-    b = rand(matrixRow, 4);
 end
